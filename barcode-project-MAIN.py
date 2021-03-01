@@ -19,31 +19,32 @@ Check for duplicate entries"""
 
 
 def display_menu():
-    # TODO: Set while loop before performing redirection
-    valid = False
-    while not valid:
-        option = input("Select an option:\n"
-                       "1 - Add to inventory\n"
-                       "2 - Record usage of an item\n"
-                       "3 - Change details of an existing item\n"
-                       "4 - Delete from inventory\n")
-        int_option = int(option)
-        if 1<=int_option<=4:
-            valid = True
 
-    # TODO: check user input is string non-numeric first and send error message before converting to integer
-            if option == 1:
-                print("Selected option: " + str(option))
-                new_item()
-            if option == 2:
-                print("Selected option: " + str(option))
-                decrease_item()
-            if option == 3:
-                print("Selected option: " + str(option))
-                edit_details()
-            if option == 4:
-                print("Selected option: " + str(option))
-                delete_item()
+    option = input("Select an option:\n"
+              "1 - Add to inventory\n"
+              "2 - Record usage of an item\n"
+              "3 - Change details of an existing item\n"
+              "4 - Delete from inventory\n")
+    try:
+        int_option = int(option)
+        if not 1<=int_option<=4:
+            print("Please select a valid option. (1, 2, 3, 4)")
+        if int_option == 1:
+            print("Selected option: " + str(option))
+            new_item()
+        if int_option == 2:
+            print("Selected option: " + str(option))
+            decrease_item()
+        if int_option == 3:
+            print("Selected option: " + str(option))
+            edit_details()
+        if int_option == 4:
+            print("Selected option: " + str(option))
+            delete_item()
+    except ValueError:
+        print("You entered a string. Please select a valid option. (1, 2, 3, 4)")
+
+
 
 
 
