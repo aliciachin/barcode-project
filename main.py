@@ -19,45 +19,36 @@ Check for duplicate entries"""
 
 
 def display_menu():
+    valid = False
+    while not valid:
+        try:
+            option = input("Select an option:\n"
+                           "1 - Add to inventory\n"
+                           "2 - Record usage of an item\n"
+                           "3 - Change details of an existing item\n"
+                           "4 - Delete from inventory\n")
+            int_option = int(option)
+            if not 1 <= int_option <= 4:
+                print("Please select a valid option: 1, 2, 3, 4\n")
+            if int_option == 1:
+                valid = True
+                print("Selected option: " + str(option))
+                new_item()
+            if int_option == 2:
+                valid = True
+                print("Selected option: " + str(option))
+                decrease_item()
+            if int_option == 3:
+                valid = True
+                print("Selected option: " + str(option))
+                edit_details()
+            if int_option == 4:
+                valid = True
+                print("Selected option: " + str(option))
+                delete_item()
+        except ValueError:
+            print("Please select a valid option: 1, 2, 3, 4\n")
 
-    option = input("Select an option:\n"
-              "1 - Add to inventory\n"
-              "2 - Record usage of an item\n"
-              "3 - Change details of an existing item\n"
-              "4 - Delete from inventory\n")
-    try:
-        int_option = int(option)
-        if not 1<=int_option<=4:
-            print("Please select a valid option. (1, 2, 3, 4)")
-        if int_option == 1:
-            print("Selected option: " + str(option))
-            new_item()
-        if int_option == 2:
-            print("Selected option: " + str(option))
-            decrease_item()
-        if int_option == 3:
-            print("Selected option: " + str(option))
-            edit_details()
-        if int_option == 4:
-            print("Selected option: " + str(option))
-            delete_item()
-    except ValueError:
-        print("You entered a string. Please select a valid option. (1, 2, 3, 4)")
-
-
-
-
-'''def display_menu(option):
-    not_valid = True
-    while not_valid:
-        print('1,2,3,4')
-        option = int(input('12,,3,4)'))
-        if valid_option():
-            not_valid = False
-        else:
-            print('only select between 1 to 4 incl')
-    if option == 1:
-        do 1'''
 
 
 # ADD - Add to inventory
