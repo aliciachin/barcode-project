@@ -16,8 +16,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="60" column="9" lean-forward="true" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+            <state relative-caret-position="252">
+              <caret line="86" column="82" selection-start-line="86" selection-start-column="82" selection-end-line="86" selection-end-column="82" />
+              <folding>
+                <element signature="e#606#1770#0" />
+                <element signature="e#2525#2529#0" />
+                <element signature="e#2600#2604#0" />
+                <element signature="e#2663#2667#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614722647425</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated new_item function; user input control for barcode">
+      <created>1614724340435</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1614724340435</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -175,14 +188,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989429" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989429" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989429" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="TODO" order="6" sideWeight="0.4982382" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010571" side_tool="true" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5017618" side_tool="true" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -214,7 +227,8 @@
     <MESSAGE value="Renamed main code file to main.py" />
     <MESSAGE value="Resolved looping upon incorrect input in scratch.py" />
     <MESSAGE value="Resolved looping upon incorrect input in main.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolved looping upon incorrect input in main.py" />
+    <MESSAGE value="Updated new_item function; user input control for barcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated new_item function; user input control for barcode" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/scratch.py">
@@ -226,8 +240,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="60" column="9" lean-forward="true" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+        <state relative-caret-position="252">
+          <caret line="86" column="82" selection-start-line="86" selection-start-column="82" selection-end-line="86" selection-end-column="82" />
+          <folding>
+            <element signature="e#606#1770#0" />
+            <element signature="e#2525#2529#0" />
+            <element signature="e#2600#2604#0" />
+            <element signature="e#2663#2667#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -25,55 +25,66 @@ def display_menu():
                            "3 - Change details of an existing item\n"
                            "4 - Delete from inventory\n")
             int_option = int(option)
+
             if not 1 <= int_option <= 4:
                 print("Please select a valid option: 1, 2, 3, 4\n")
+
             if int_option == 1:
                 valid = True
                 print("Selected option: " + str(option))
                 new_item()
+
             if int_option == 2:
                 valid = True
                 print("Selected option: " + str(option))
                 decrease_item()
+
             if int_option == 3:
                 valid = True
                 print("Selected option: " + str(option))
                 edit_details()
+
             if int_option == 4:
                 valid = True
                 print("Selected option: " + str(option))
                 delete_item()
+
         except ValueError:
             print("Please select a valid option: 1, 2, 3, 4\n")
 
 
 def new_item():
+    # TODO: Create test database in SQL to check input against
     # ADD - Add to inventory
     # Scan barcode
-    # If new, information required:
-    #    - item (string)
-    #    - category (multi-select)
-    #    - quantity
-    #    - unit (multi-select)
-    #    - expiry_date (YYYY-MM-DD format)
-    #    Add to database
-    # If existing, information required:
-    #
-    #
+    # If new, request for all information and append to the database.
+    # If existing, request for relevant information and update the entry.
     valid = False
     while not valid:
-        barcode = input("Please scan/enter the item's barcode. ")
+        barcode = input("Please scan/enter the item's barcode.\n")
 
         if barcode.isnumeric():
-            # check that barcode is valid - must be a number.
+            # check that barcode is a number.
             valid = True
             pass
 
+            # TODO: Write code for new entry - append to database
+            # If barcode is not in database,
+            # Get input:
+            #   - item (string)
+            #   - category (multi-select)
+            #   - quantity (numeric)
+            #   - unit (multi-select)
+            #   - expiry_date (YYYY-MM-DD format)
+            # Add to database
 
-
-
-
-'''If barcode exists in the database, user can update or delete.'''
+            # TODO: Write code for existing entry - update record in database
+            # If barcode exists in database,
+            # Get input:
+            #   - quantity (display current unit for user)
+            #   - expiry_date (YYYY-MM-DD format)
+            # Update database
+            # TODO: Determine logic for identical items but different expiry dates
 
 
 # UPDATE - Record usage of an item
