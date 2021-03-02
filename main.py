@@ -12,13 +12,10 @@ User will be prompted to select an option in the display menu; add, update (incr
 ERROR CHECKS
 Check for duplicate entries"""
 
-# Display menu
-'''Prompts the user to select an option; add, update (increase, decrease, correct), delete'''
-
-
-
 
 def display_menu():
+    # Prompts the user to select an option; add, update (increase, decrease, correct), delete
+    # Loops if input is invalid (not 1 to 4 inclusive, varchar)
     valid = False
     while not valid:
         try:
@@ -50,30 +47,30 @@ def display_menu():
             print("Please select a valid option: 1, 2, 3, 4\n")
 
 
-
-# ADD - Add to inventory
-# 1. Scan barcode
-# 2. If new, information required:
-#       - item (string)
-#       - category (multi-select)
-#       - quantity
-#       - unit (multi-select)
-#       - expiry_date (YYYY-MM-DD format)
-#       Add to database
-# 3. If existing, information required:
-#       -
-#
-
 def new_item():
-    barcode = input("Please scan the item's barcode. ")
+    # ADD - Add to inventory
+    # Scan barcode
+    # If new, information required:
+    #    - item (string)
+    #    - category (multi-select)
+    #    - quantity
+    #    - unit (multi-select)
+    #    - expiry_date (YYYY-MM-DD format)
+    #    Add to database
+    # If existing, information required:
+    #
+    #
+    valid = False
+    while not valid:
+        barcode = input("Please scan/enter the item's barcode. ")
 
-    # check that barcode is valid - must be a number.
-    while not barcode.isnumeric():
-        print("Barcode must be numeric.")
-        barcode = input("Please scan the item's barcode. ")
+        if barcode.isnumeric():
+            # check that barcode is valid - must be a number.
+            valid = True
+            pass
 
-    else :
-        pass
+
+
 
 
 '''If barcode exists in the database, user can update or delete.'''
