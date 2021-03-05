@@ -64,7 +64,7 @@ def new_item():
         barcode = input("Please scan/enter the item's barcode.\n")
 
         if barcode.isnumeric():
-            # check that barcode is a number.
+            # Check that barcode is a number.
             valid = True
             pass
 

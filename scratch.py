@@ -1,4 +1,4 @@
-def display_menu():
+def menu():
     valid = False
     while not valid:
         try:
@@ -22,6 +22,6 @@ def display_menu():
             print("I said an integer. You entered a string, bitch.")
 
 
-display_menu()
+menu()
 
 
