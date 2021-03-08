@@ -54,7 +54,6 @@ def display_menu():
 
 
 def new_item():
-    # TODO: Create test database in SQL to check input against
     # ADD - Add to inventory
     # Scan barcode
     # If new, request for all information and append to the database.
@@ -69,6 +68,7 @@ def new_item():
             pass
 
             # TODO: Write code for new entry - append to database
+
             # If barcode is not in database,
             # Get input:
             #   - item (string)
