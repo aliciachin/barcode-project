@@ -1,4 +1,5 @@
 # Inventory program with barcode scanner
+# Author: Alicia Chin
 """Inventory of all food items in the kitchen. User will be able to add a new item,
 update an existing item or delete an item.
 
@@ -12,6 +13,8 @@ User will be prompted to select an option in the display menu; add, update (incr
 ERROR CHECKS
 Check for duplicate entries"""
 
+
+# Imports of libraries
 import sqlite3
 
 
@@ -33,8 +36,13 @@ def display_menu():
                 print("Please select a valid option: 1, 2, 3, 4\n")
 
             if int_option == 1:
+                # valid = True
+                # print("Selected option: " + str(option))
+                #
+                # if barcode_numeric() == True:
+                #     new_item(barcode)
                 valid = True
-                print("Selected option: " + str(option))
+                print( "Selected option: " + str( option ) )
                 new_item()
 
             if int_option == 2:
@@ -60,16 +68,9 @@ def display_menu():
         except ValueError:
             print("Please select a valid option: 1, 2, 3, 4\n")
 
-# Function to add entry to database
-def add_one(barcode,item,category,quantity,unit,expiry_date):
-    conn = sqlite3.connect('barcode.db')
-    c = conn.cursor()
 
-    c.execute('''
-    INSERT INTO sample VALUES
-        (?,?,?,?,?,?,datetime('now','localtime'),datetime('now','localtime'));''',(barcode,item,category,quantity,unit,expiry_date))
-    conn.commit()
-    conn.close()
+
+# STANDALONE FUNCTIONS
 
 # Display database
 def show_all():
@@ -80,19 +81,64 @@ def show_all():
 
     for item in items:
         print(item)
+        print(type(item))
 
     conn.commit()
     conn.close()
 
-def new_item():
-    # ADD - Add to inventory
-    # Scan barcode
-    # If new, request for all information and append to the database.
-    # If existing, request for relevant information and update the entry.
-    # Input control required for category (select options), unit (g or ml only), quantity (numeric), expiry date (YYYY-MM-DD)
+def show_one(barcode):
+    conn = sqlite3.connect( 'barcode.db' )
+    c = conn.cursor()
+    c.execute( '''SELECT * FROM sample WHERE id = (?);''', (barcode,) )
+    result = c.fetchone()
+    conn.commit()
+    conn.close()
+
+    print(result)
+
+
+# Check barcode is numeric
+def barcode_numeric():
     valid = False
     while not valid:
         barcode = input("Please scan/enter the item's barcode.\n")
+
+        if barcode.isnumeric():
+            # Check that barcode is a number.
+            valid = True
+            return valid, barcode
+
+
+# Function to add entry to database
+def add_one(barcode, item, category, quantity, unit, expiry_date):
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
+
+    c.execute('''INSERT INTO sample VALUES (?,?,?,?,?,?,datetime('now','localtime'),datetime('now','localtime'));''',
+              (barcode, item, category, quantity, unit, expiry_date))
+
+    conn.commit()
+    conn.close()
+
+def subtract_quantity(barcode,quantity_used):
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
+
+    c.execute('''UPDATE sample SET quantity = quantity - (?), last_updated = datetime('now','localtime')
+                    WHERE id = (?);''',
+              (quantity_used, barcode))
+
+    conn.commit()
+    conn.close()
+
+
+
+# MAIN FUNCTIONS
+
+def new_item():
+    valid = False
+    while not valid:
+        barcode = input( "Please scan/enter the item's barcode.\n" )
 
         if barcode.isnumeric():
             # Check that barcode is a number.
@@ -101,23 +147,24 @@ def new_item():
             # Check if barcode exists in the database.
             conn = sqlite3.connect('barcode.db')
             c = conn.cursor()
-            c.execute('''SELECT id FROM sample WHERE id = (?)''',(barcode,))
+            c.execute('''SELECT id FROM sample WHERE id = (?);''', (barcode,))
             result = c.fetchone()
             conn.commit()
             conn.close()
 
             # If barcode does not exist, get details to create new entry.
             if result is None:
-                print("Enter the following details.\n")
+                print('Enter the following details.\n')
                 item = input("Item name: ")
                 category = input("Category: ")
                 unit = input("Unit (g or ml only): ")
                 quantity = input("Quantity: ")
                 expiry_date = input("Date of expiry (YYYY-MM-DD): ")
 
-                add_one(barcode,item,category,quantity,unit,expiry_date)
+                add_one(barcode, item, category, quantity, unit, expiry_date)
 
-                show_all()
+                print("New entry added!\n")
+                show_one(barcode)
 
             # If barcode exists, get quantity (and expiry date) to update details.
             # TODO: Determine how to store same items with different expiry dates.
@@ -137,27 +184,56 @@ def new_item():
                 #     c.execute('''
                 #     SELECT * FROM sample''')
                 # update(quantity,expiry_date)
-                    pass
+                pass
 
 
 # UPDATE - Record usage of an item
 def decrease_item():
-    pass
+    valid = False
+    while not valid:
+        barcode = input("Please scan/enter the item's barcode.\n")
+
+        if barcode.isnumeric():
+            # Check that barcode is a number.
+            valid = True
+
+            # Check if barcode exists in the database.
+            conn = sqlite3.connect('barcode.db')
+            c = conn.cursor()
+            c.execute('''SELECT id FROM sample WHERE id = (?);''', (barcode,))
+            result = c.fetchone()
+            conn.commit()
+            conn.close()
+
+            if result is None:
+                print("Exit and select option 1.")
+
+            # Get quantity used
+            else:
+                print("Selected item:\n" + str(result))
+                quantity_used = input("Quantity used: ")
+
+                subtract_quantity(barcode,quantity_used)
+
+                print( "Entry updated!\n" )
+                show_one(barcode)
 
 
 # EDIT - Change details of an existing item
 def edit_details():
+    # Get barcode id
+    # Fetch entry
+    # Select option - which variable to change
     pass
 
 
 # DELETE - Delete from inventory
 def delete_item():
+    # Get barcode id
+    # Fetch entry
+    # Request confirmation to delete entry
+    # Delete entry
     pass
 
+
 display_menu()
-
-
-
-
-
-
