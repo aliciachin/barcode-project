@@ -25,7 +25,8 @@ def display_menu():
                            "1 - Add to inventory\n"
                            "2 - Record usage of an item\n"
                            "3 - Change details of an existing item\n"
-                           "4 - Delete from inventory\n")
+                           "4 - Delete from inventory\n"
+                           "5 - Show all\n")
             int_option = int(option)
 
             if not 1 <= int_option <= 4:
@@ -51,6 +52,11 @@ def display_menu():
                 print("Selected option: " + str(option))
                 delete_item()
 
+            if int_option == 5:
+                valid = True
+                print("Selected option: " + str(option))
+                show_all()
+
         except ValueError:
             print("Please select a valid option: 1, 2, 3, 4\n")
 
@@ -69,6 +75,11 @@ def show_all():
     conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
     c.execute('''SELECT * FROM sample;''')
+    items = c.fetchall()
+
+    for item in items:
+        print(item)5
+
     conn.commit()
     conn.close()
 
@@ -106,7 +117,6 @@ def new_item():
 
                 add_one(barcode,item,category,quantity,unit,expiry_date)
 
-                # TODO: show_all() doesn't work
                 show_all()
 
 
