@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6dc531c-5f29-4234-91ad-5efc855d69a8" name="Default Changelist" comment="Created sample data set for testing; sample2 in barcode.db, code in sql.py">
-      <change afterPath="$PROJECT_DIR$/sql_create_table.py" afterDir="false" />
+    <list default="true" id="d6dc531c-5f29-4234-91ad-5efc855d69a8" name="Default Changelist" comment="Fixed show_all(); formatted display results">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/sql.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="108" column="47" lean-forward="true" selection-start-line="108" selection-start-column="47" selection-end-line="108" selection-end-column="47" />
+            <state relative-caret-position="838">
+              <caret line="140" selection-start-line="140" selection-end-line="140" />
             </state>
           </provider>
         </entry>
@@ -219,7 +217,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615182045757</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Developed new_item() code; Created SQL queries to add new entries">
+      <created>1619582217642</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1619582217642</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed show_all(); formatted display results">
+      <created>1619583729878</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1619583729878</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -322,7 +334,9 @@
     <MESSAGE value="Updated new_item function; user input control for barcode" />
     <MESSAGE value="Wrote comments and next steps for new_item()" />
     <MESSAGE value="Created sample data set for testing; sample2 in barcode.db, code in sql.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created sample data set for testing; sample2 in barcode.db, code in sql.py" />
+    <MESSAGE value="Developed new_item() code; Created SQL queries to add new entries" />
+    <MESSAGE value="Fixed show_all(); formatted display results" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed show_all(); formatted display results" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/sql_create_table.py">
@@ -355,8 +369,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="108" column="47" lean-forward="true" selection-start-line="108" selection-start-column="47" selection-end-line="108" selection-end-column="47" />
+        <state relative-caret-position="838">
+          <caret line="140" selection-start-line="140" selection-end-line="140" />
         </state>
       </provider>
     </entry>

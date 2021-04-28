@@ -29,7 +29,7 @@ def display_menu():
                            "5 - Show all\n")
             int_option = int(option)
 
-            if not 1 <= int_option <= 4:
+            if not 1 <= int_option <= 5:
                 print("Please select a valid option: 1, 2, 3, 4\n")
 
             if int_option == 1:
@@ -71,6 +71,7 @@ def add_one(barcode,item,category,quantity,unit,expiry_date):
     conn.commit()
     conn.close()
 
+# Display database
 def show_all():
     conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
@@ -78,7 +79,7 @@ def show_all():
     items = c.fetchall()
 
     for item in items:
-        print(item)5
+        print(item)
 
     conn.commit()
     conn.close()
@@ -88,6 +89,7 @@ def new_item():
     # Scan barcode
     # If new, request for all information and append to the database.
     # If existing, request for relevant information and update the entry.
+    # Input control required for category (select options), unit (g or ml only), quantity (numeric), expiry date (YYYY-MM-DD)
     valid = False
     while not valid:
         barcode = input("Please scan/enter the item's barcode.\n")
@@ -96,7 +98,6 @@ def new_item():
             # Check that barcode is a number.
             valid = True
 
-
             # Check if barcode exists in the database.
             conn = sqlite3.connect('barcode.db')
             c = conn.cursor()
@@ -104,7 +105,6 @@ def new_item():
             result = c.fetchone()
             conn.commit()
             conn.close()
-
 
             # If barcode does not exist, get details to create new entry.
             if result is None:
@@ -118,7 +118,6 @@ def new_item():
                 add_one(barcode,item,category,quantity,unit,expiry_date)
 
                 show_all()
-
 
             # If barcode exists, get quantity (and expiry date) to update details.
             # TODO: Determine how to store same items with different expiry dates.
@@ -139,26 +138,6 @@ def new_item():
                 #     SELECT * FROM sample''')
                 # update(quantity,expiry_date)
                     pass
-
-
-
-
-            # If barcode is not in database,
-            # Get input:
-            #   - item (string)
-            #   - category (multi-select)
-            #   - quantity (numeric)
-            #   - unit (multi-select)
-            #   - expiry_date (YYYY-MM-DD format)
-            # Add to database
-
-            # TODO: In SQL, write code for existing entry - update record in database
-            # If barcode exists in database,
-            # Get input:
-            #   - quantity (display current unit for user)
-            #   - expiry_date (YYYY-MM-DD format)
-            # Update database
-            # TODO: Determine logic for identical items but different expiry dates
 
 
 # UPDATE - Record usage of an item
