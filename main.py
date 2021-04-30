@@ -13,7 +13,6 @@ User will be prompted to select an option in the display menu; add, update (incr
 ERROR CHECKS
 Check for duplicate entries"""
 
-
 # Imports of libraries
 import sqlite3
 
@@ -42,7 +41,7 @@ def display_menu():
                 # if barcode_numeric() == True:
                 #     new_item(barcode)
                 valid = True
-                print( "Selected option: " + str( option ) )
+                print("Selected option: " + str(option))
                 new_item()
 
             if int_option == 2:
@@ -69,7 +68,6 @@ def display_menu():
             print("Please select a valid option: 1, 2, 3, 4\n")
 
 
-
 # STANDALONE FUNCTIONS
 
 # Display database
@@ -81,15 +79,15 @@ def show_all():
 
     for item in items:
         print(item)
-        print(type(item))
 
     conn.commit()
     conn.close()
 
+
 def show_one(barcode):
-    conn = sqlite3.connect( 'barcode.db' )
+    conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
-    c.execute( '''SELECT * FROM sample WHERE id = (?);''', (barcode,) )
+    c.execute('''SELECT * FROM sample WHERE id = (?);''', (barcode,))
     result = c.fetchone()
     conn.commit()
     conn.close()
@@ -98,15 +96,14 @@ def show_one(barcode):
 
 
 # Check barcode is numeric
-def barcode_numeric():
+def barcode_numeric(barcode):
     valid = False
-    while not valid:
-        barcode = input("Please scan/enter the item's barcode.\n")
 
-        if barcode.isnumeric():
-            # Check that barcode is a number.
-            valid = True
-            return valid, barcode
+    if barcode.isnumeric():
+        # Check that barcode is a number.
+        valid = True
+
+    return valid
 
 
 # Function to add entry to database
@@ -120,7 +117,8 @@ def add_one(barcode, item, category, quantity, unit, expiry_date):
     conn.commit()
     conn.close()
 
-def subtract_quantity(barcode,quantity_used):
+
+def subtract_quantity(barcode, quantity_used):
     conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
 
@@ -132,59 +130,66 @@ def subtract_quantity(barcode,quantity_used):
     conn.close()
 
 
+def update_variable(variable, new_info):
+
+
+    # Display updated entry
+    # print("\nEntry updated!\n")
+    # show_one(barcode)
+    pass
+
 
 # MAIN FUNCTIONS
 
 def new_item():
     valid = False
     while not valid:
-        barcode = input( "Please scan/enter the item's barcode.\n" )
+        barcode = input("Please scan/enter the item's barcode.\n")
 
-        if barcode.isnumeric():
-            # Check that barcode is a number.
-            valid = True
+        # Check if barcode is a number
+        valid = barcode_numeric(barcode)
 
-            # Check if barcode exists in the database.
-            conn = sqlite3.connect('barcode.db')
-            c = conn.cursor()
-            c.execute('''SELECT id FROM sample WHERE id = (?);''', (barcode,))
-            result = c.fetchone()
-            conn.commit()
-            conn.close()
+    # Check if barcode exists in the database.
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
+    c.execute('''SELECT id FROM sample WHERE id = (?);''', (barcode,))
+    result = c.fetchone()
+    conn.commit()
+    conn.close()
 
-            # If barcode does not exist, get details to create new entry.
-            if result is None:
-                print('Enter the following details.\n')
-                item = input("Item name: ")
-                category = input("Category: ")
-                unit = input("Unit (g or ml only): ")
-                quantity = input("Quantity: ")
-                expiry_date = input("Date of expiry (YYYY-MM-DD): ")
+    # If barcode does not exist, get details to create new entry.
+    if result is None:
+        print('Enter the following details.\n')
+        item = input("Item name: ")
+        category = input("Category: ")
+        unit = input("Unit (g or ml only): ")
+        quantity = input("Quantity: ")
+        expiry_date = input("Date of expiry (YYYY-MM-DD): ")
 
-                add_one(barcode, item, category, quantity, unit, expiry_date)
+        add_one(barcode, item, category, quantity, unit, expiry_date)
 
-                print("New entry added!\n")
-                show_one(barcode)
+        print("\nNew entry added!\n")
+        show_one(barcode)
 
-            # If barcode exists, get quantity (and expiry date) to update details.
-            # TODO: Determine how to store same items with different expiry dates.
-            else:
-                # TODO: Retrieve entry to review details and capture unit
-                # print("Enter the following details.\n")
-                # quantity = input("Quantity (in " + str(unit) "): ")
-                # expiry_date = input("Date of expiry: ")
+    # If barcode exists, get quantity (and expiry date) to update details.
+    # TODO: Determine how to store same items with different expiry dates.
+    else:
+        # TODO: Retrieve entry to review details and capture unit
+        # print("Enter the following details.\n")
+        # quantity = input("Quantity (in " + str(unit) "): ")
+        # expiry_date = input("Date of expiry: ")
 
-                # def update(quantity,expiry_date):
-                #     conn = sqlite3.connect('barcode.db')
-                #     c = conn.cursor()
-                #
-                #     c.execute('''
-                #     UPDATE...''')
-                #
-                #     c.execute('''
-                #     SELECT * FROM sample''')
-                # update(quantity,expiry_date)
-                pass
+        # def update(quantity,expiry_date):
+        #     conn = sqlite3.connect('barcode.db')
+        #     c = conn.cursor()
+        #
+        #     c.execute('''
+        #     UPDATE...''')
+        #
+        #     c.execute('''
+        #     SELECT * FROM sample''')
+        # update(quantity,expiry_date)
+        pass
 
 
 # UPDATE - Record usage of an item
@@ -193,36 +198,140 @@ def decrease_item():
     while not valid:
         barcode = input("Please scan/enter the item's barcode.\n")
 
-        if barcode.isnumeric():
-            # Check that barcode is a number.
-            valid = True
+        # Check if barcode is a number
+        valid = barcode_numeric(barcode)
 
-            # Check if barcode exists in the database.
-            conn = sqlite3.connect('barcode.db')
-            c = conn.cursor()
-            c.execute('''SELECT id FROM sample WHERE id = (?);''', (barcode,))
-            result = c.fetchone()
-            conn.commit()
-            conn.close()
+    # Check if barcode exists in the database.
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
+    c.execute('''SELECT id FROM sample WHERE id = (?);''', (barcode,))
+    result = c.fetchone()
+    conn.commit()
+    conn.close()
 
-            if result is None:
-                print("Exit and select option 1.")
+    if result is None:
+        print("No id match. Exit and select option 1 to add a new item.")
 
-            # Get quantity used
-            else:
-                print("Selected item:\n" + str(result))
-                quantity_used = input("Quantity used: ")
+    # Get quantity used
+    else:
+        print("Selected item:\n" + str(result))
+        quantity_used = input("Quantity used: ")
 
-                subtract_quantity(barcode,quantity_used)
+        subtract_quantity(barcode, quantity_used)
 
-                print( "Entry updated!\n" )
-                show_one(barcode)
+        print("\nEntry updated!\n")
+        show_one(barcode)
 
 
 # EDIT - Change details of an existing item
 def edit_details():
-    # Get barcode id
-    # Fetch entry
+    valid = False
+    while not valid:
+        barcode = input("Please scan/enter the item's barcode.\n")
+
+        # Check if barcode is a number
+        valid = barcode_numeric(barcode)
+
+    # Check if barcode exists in the database.
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
+    c.execute('''SELECT id FROM sample WHERE id = (?);''', (barcode,))
+    result = c.fetchone()
+    conn.commit()
+    conn.close()
+
+    if result is None:
+        print("No id match. Exit and select option 1 to add a new item.")
+
+    # Select which variable to change
+    else:
+        valid = False
+        while not valid:
+            try:
+                print("Selected item:\n")
+                show_one(barcode)
+                option = input("\nWhat would you like to edit?\n"
+                               "1 - Id\n"
+                               "2 - Item name \n"
+                               "3 - Category\n"
+                               "4 - Quantity\n"
+                               "5 - Unit\n"
+                               "6 - Expiry Date\n")
+                int_option = int(option)
+
+                if not 1 <= int_option <= 6:
+                    print("Please select a valid option: 1, 2, 3, 4, 5, 6\n")
+
+                if int_option == 1:
+                    valid = True
+                    variable = "id"
+                    new_info = input("New id: ")
+
+                    # Update entry with new info
+                    update_variable(variable, new_info)
+
+                    # Display updated entry
+                    print("\nEntry updated!\n")
+                    show_one(barcode)
+
+                if int_option == 2:
+                    valid = True
+                    variable = "item"
+                    new_info = input("New item name: ")
+
+                    # Update entry with new info
+                    update_variable(variable, new_info)
+
+                    # Display updated entry
+                    print("\nEntry updated!\n")
+                    show_one(barcode)
+
+                if int_option == 3:
+                    valid = True
+                    new_info = input("New category: ")
+
+                    # Update entry with new info
+                    update_variable(variable, new_info)
+
+                    # Display updated entry
+                    print("\nEntry updated!\n")
+                    show_one(barcode)
+
+                if int_option == 4:
+                    valid = True
+                    new_info = input("New quantity: ")
+
+                    # Update entry with new info
+                    update_variable(variable, new_info)
+
+                    # Display updated entry
+                    print("\nEntry updated!\n")
+                    show_one(barcode)
+
+                if int_option == 5:
+                    valid = True
+                    new_info = input("New unit: ")
+
+                    # Update entry with new info
+                    update_variable(variable, new_info)
+
+                    # Display updated entry
+                    print("\nEntry updated!\n")
+                    show_one(barcode)
+
+                if int_option == 6:
+                    valid = True
+                    new_info = input("New expiry date (YYYY-MM-DD): ")
+
+                    # Update entry with new info
+                    update_variable(variable, new_info)
+
+                    # Display updated entry
+                    print("\nEntry updated!\n")
+                    show_one(barcode)
+
+            except ValueError:
+                print("Please select a valid option: 1, 2, 3, 4, 5, 6\n")
     # Select option - which variable to change
     pass
 
