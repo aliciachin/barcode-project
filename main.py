@@ -35,11 +35,6 @@ def display_menu():
                 print("Please select a valid option: 1, 2, 3, 4\n")
 
             if int_option == 1:
-                # valid = True
-                # print("Selected option: " + str(option))
-                #
-                # if barcode_numeric() == True:
-                #     new_item(barcode)
                 valid = True
                 print("Selected option: " + str(option))
                 new_item()
@@ -86,7 +81,7 @@ def barcode_numeric(barcode):
 def sql_entry_exists(barcode):
     conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
-    c.execute('''SELECT id FROM sample WHERE id = (?);''', (barcode,))
+    c.execute('''SELECT id FROM sample WHERE id = ?;''', (barcode,))
     result = c.fetchone()
     conn.commit()
     conn.close()
@@ -112,7 +107,7 @@ def sql_show_all():
 def sql_show_one(barcode):
     conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
-    c.execute('''SELECT * FROM sample WHERE id = (?);''', (barcode,))
+    c.execute('''SELECT * FROM sample WHERE id = ?;''', (barcode,))
     result = c.fetchone()
     conn.commit()
     conn.close()
@@ -137,8 +132,8 @@ def sql_subtract_quantity(barcode, quantity_used):
     conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
 
-    c.execute('''UPDATE sample SET quantity = quantity - (?), last_updated = datetime('now','localtime')
-                    WHERE id = (?);''',
+    c.execute('''UPDATE sample SET quantity = quantity - ?, last_updated = datetime('now','localtime')
+                    WHERE id = ?;''',
               (quantity_used, barcode))
 
     conn.commit()
@@ -146,22 +141,34 @@ def sql_subtract_quantity(barcode, quantity_used):
 
 
 # Replaces value of a specific column for a single entry
-def sql_update_variable(variable, new_info): # TODO: Write code for update_variable() for edit_details()
+def sql_update_variable(barcode, new_info, variable): # TODO: Write code for update_variable() for edit_details()
+    # Query: match variable name with column name, replace value with new info
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
 
+    c.execute('''UPDATE sample SET (?) = (?), last_updated = datetime('now','localtime')
+                        WHERE id = (?);''',
+              (variable, new_info, barcode))
 
-    # Display updated entry
-    # print("\nEntry updated!\n")
-    # show_one(barcode)
+    conn.commit()
+    conn.close()
+
     pass
 
 
 # Deletes a single entry
 def sql_delete_one(barcode):
-    pass
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
 
+    c.execute('''DELETE FROM sample WHERE id = ?;''', (barcode,))
+
+    conn.commit()
+    conn.close()
 
 
 # MAIN FUNCTIONS
+
 
 def new_item():
     valid = False
@@ -228,8 +235,9 @@ def decrease_item():
 
     # Get quantity used
     else:
-        print("Selected item:\n" + str(result))
-        quantity_used = input("Quantity used: ")
+        print("\nSelected item:")
+        sql_show_one(barcode)
+        quantity_used = input("\nQuantity used: ")
 
         sql_subtract_quantity(barcode, quantity_used)
 
@@ -258,7 +266,7 @@ def edit_details():
         valid = False
         while not valid:
             try:
-                print("Selected item:\n")
+                print("\nSelected item:")
                 sql_show_one(barcode)
                 option = input("\nWhat would you like to edit?\n"
                                "1 - Id\n"
@@ -278,7 +286,7 @@ def edit_details():
                     new_info = input("New id: ")
 
                     # Update entry with new info
-                    sql_update_variable(variable, new_info)
+                    sql_update_variable(barcode, new_info, variable)
 
                     # Display updated entry
                     print("\nEntry updated!\n")
@@ -290,7 +298,7 @@ def edit_details():
                     new_info = input("New item name: ")
 
                     # Update entry with new info
-                    sql_update_variable(variable, new_info)
+                    sql_update_variable(barcode, new_info, variable)
 
                     # Display updated entry
                     print("\nEntry updated!\n")
@@ -298,10 +306,11 @@ def edit_details():
 
                 if int_option == 3:
                     valid = True
+                    variable = "category"
                     new_info = input("New category: ")
 
                     # Update entry with new info
-                    sql_update_variable(variable, new_info)
+                    sql_update_variable(barcode, new_info, variable)
 
                     # Display updated entry
                     print("\nEntry updated!\n")
@@ -309,10 +318,11 @@ def edit_details():
 
                 if int_option == 4:
                     valid = True
+                    variable = "quantity"
                     new_info = input("New quantity: ")
 
                     # Update entry with new info
-                    sql_update_variable(variable, new_info)
+                    sql_update_variable(barcode, new_info, variable)
 
                     # Display updated entry
                     print("\nEntry updated!\n")
@@ -320,10 +330,11 @@ def edit_details():
 
                 if int_option == 5:
                     valid = True
+                    variable = "unit"
                     new_info = input("New unit: ")
 
                     # Update entry with new info
-                    sql_update_variable(variable, new_info)
+                    sql_update_variable(barcode, new_info, variable)
 
                     # Display updated entry
                     print("\nEntry updated!\n")
@@ -331,10 +342,11 @@ def edit_details():
 
                 if int_option == 6:
                     valid = True
+                    variable = "expiry_date"
                     new_info = input("New expiry date (YYYY-MM-DD): ")
 
                     # Update entry with new info
-                    sql_update_variable(variable, new_info)
+                    sql_update_variable(barcode, new_info, variable)
 
                     # Display updated entry
                     print("\nEntry updated!\n")
@@ -360,12 +372,13 @@ def delete_item():
     if result is None:
         print("Item does not exist in database.")
     else:
-        print("Selected item:\n" + str(result))
+        print("\nSelected item:")
+        sql_show_one(barcode)
         confirm = input("Are you sure you want to delete this entry?\n"
                         "Press 'y' to confirm. Press any other key to exit.")
 
         if confirm == "y" or confirm == "Y":
-            sql_delete_one(barcode) # No need to break?
+            sql_delete_one(barcode)
 
 
 display_menu()

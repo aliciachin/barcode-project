@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6dc531c-5f29-4234-91ad-5efc855d69a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -17,14 +16,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="320" lean-forward="true" selection-start-line="320" selection-end-line="320" />
+            <state relative-caret-position="420">
+              <caret line="117" column="33" lean-forward="true" selection-start-line="117" selection-start-column="33" selection-end-line="117" selection-end-column="33" />
               <folding>
-                <element signature="e#2273#2295#0" />
-                <element signature="e#2336#2542#0" />
-                <element signature="e#2571#2783#0" />
-                <element signature="e#3189#3472#0" />
-                <element signature="e#3524#3804#0" />
+                <element signature="e#550#2072#0" />
+                <element signature="e#2075#2097#0" />
+                <element signature="e#2165#2288#0" />
+                <element signature="e#2354#2563#0" />
+                <element signature="e#2620#2826#0" />
+                <element signature="e#2888#3096#0" />
+                <element signature="e#4059#4517#0" />
+                <element signature="e#4258#5767#0" />
+                <element signature="e#5830#6532#0" />
               </folding>
             </state>
           </provider>
@@ -96,6 +99,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -107,7 +111,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -253,10 +256,24 @@
       <option name="project" value="LOCAL" />
       <updated>1619653584588</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Developed edit_details(); select variable to edit, to write sql function">
+      <created>1619751176440</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1619751176441</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Developed delete_item(), updated SQL-related functions&#10;&#10;Coded logic for delete_item. Have not defined sql_delete_one() to complete delete_item().&#10;Changed naming convention of SQL query functions to be prefixed with &quot;sql_&quot; &#10;Created sql_entry_exists()">
+      <created>1619789581403</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1619789581403</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -267,18 +284,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2048" height="1152" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.34632462" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16872226" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49710375" visible="true" weight="0.3068392" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49710375" visible="true" weight="0.35120147" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39926064" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49753347" weight="0.31885397" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49753347" weight="0.3180723" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49921012" weight="0.32079208" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50289625" side_tool="true" weight="0.41866913" />
@@ -360,7 +376,10 @@
     <MESSAGE value="Fixed show_all(); formatted display results" />
     <MESSAGE value="Cleaned up comments" />
     <MESSAGE value="Completed decrease_item(), created show_one() to display updated entry" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed decrease_item(), created show_one() to display updated entry" />
+    <MESSAGE value="Developed edit_details(); select variable to edit, to write sql function" />
+    <MESSAGE value="Developed delete_item(), updated SQL-related functions&#10;&#10;Coded logic for delete_item. Have not defined sql_delete_one() to complete delete_item().&#10;Changed naming convention of SQL query functions to be prefixed with &quot;sql_&quot; &#10;Created sql_entry_exists()" />
+    <MESSAGE value="Developed sql_update_variable(), completed sql_delete_one()&#10;&#10;Set up SQL query for sql_update_variable() - need to debug syntax error&#10;Completed sql_delete_one() - delete_item() works now" />
+    <option name="LAST_COMMIT_MESSAGE" value="Developed sql_update_variable(), completed sql_delete_one()&#10;&#10;Set up SQL query for sql_update_variable() - need to debug syntax error&#10;Completed sql_delete_one() - delete_item() works now" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/sql_create_table.py">
@@ -379,14 +398,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="320" lean-forward="true" selection-start-line="320" selection-end-line="320" />
+        <state relative-caret-position="420">
+          <caret line="117" column="33" lean-forward="true" selection-start-line="117" selection-start-column="33" selection-end-line="117" selection-end-column="33" />
           <folding>
-            <element signature="e#2273#2295#0" />
-            <element signature="e#2336#2542#0" />
-            <element signature="e#2571#2783#0" />
-            <element signature="e#3189#3472#0" />
-            <element signature="e#3524#3804#0" />
+            <element signature="e#550#2072#0" />
+            <element signature="e#2075#2097#0" />
+            <element signature="e#2165#2288#0" />
+            <element signature="e#2354#2563#0" />
+            <element signature="e#2620#2826#0" />
+            <element signature="e#2888#3096#0" />
+            <element signature="e#4059#4517#0" />
+            <element signature="e#4258#5767#0" />
+            <element signature="e#5830#6532#0" />
           </folding>
         </state>
       </provider>
