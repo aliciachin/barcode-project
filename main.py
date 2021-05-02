@@ -146,9 +146,12 @@ def sql_update_variable(barcode, new_info, variable): # TODO: Write code for upd
     conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
 
-    c.execute('''UPDATE sample SET (?) = (?), last_updated = datetime('now','localtime')
-                        WHERE id = (?);''',
-              (variable, new_info, barcode))
+    # Get column name
+    sql_command = '''UPDATE sample SET {} = (?), last_updated = datetime('now','localtime')
+                            WHERE id = (?);'''.format(variable)
+
+    c.execute(sql_command,
+              (new_info, barcode))
 
     conn.commit()
     conn.close()
