@@ -127,6 +127,31 @@ def sql_add_one(barcode, item, category, quantity, unit, expiry_date):
     conn.close()
 
 
+# Adds to value in quantity column for a single entry
+def sql_add_quantity(barcode, quantity_add):
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
+
+    c.execute('''UPDATE sample SET quantity = quantity + ?, last_updated = datetime('now','localtime')
+                    WHERE id = ?;''',
+              (quantity_add, barcode))
+
+    conn.commit()
+    conn.close()
+
+
+def new_expiry_date(expiry_date,barcode):
+    conn = sqlite3.connect('barcode.db')
+    c = conn.cursor()
+
+    c.execute('''UPDATE sample SET expiry_date = ?, last_updated = datetime('now','localtime')
+                    WHERE id = ?;''',
+              (expiry_date, barcode))
+
+    conn.commit()
+    conn.close()
+
+
 # Subtracts from value in quantity column for a single entry
 def sql_subtract_quantity(barcode, quantity_used):
     conn = sqlite3.connect('barcode.db')
@@ -140,8 +165,10 @@ def sql_subtract_quantity(barcode, quantity_used):
     conn.close()
 
 
+
+
 # Replaces value of a specific column for a single entry
-def sql_update_variable(barcode, new_info, variable): # TODO: Write code for update_variable() for edit_details()
+def sql_update_variable(barcode, new_info, variable):
     # Query: match variable name with column name, replace value with new info
     conn = sqlite3.connect('barcode.db')
     c = conn.cursor()
@@ -155,8 +182,6 @@ def sql_update_variable(barcode, new_info, variable): # TODO: Write code for upd
 
     conn.commit()
     conn.close()
-
-    pass
 
 
 # Deletes a single entry
@@ -199,25 +224,22 @@ def new_item():
         print("\nNew entry added!\n")
         sql_show_one(barcode)
 
-    # If barcode exists, get quantity (and expiry date) to update details.
-    # TODO: Determine how to store same items with different expiry dates.
+    # If barcode exists, get quantity and/or expiry date (if necessary) to update details.
     else:
-        # TODO: Retrieve entry to review details and capture unit
-        # print("Enter the following details.\n")
-        # quantity = input("Quantity (in " + str(unit) "): ")
-        # expiry_date = input("Date of expiry: ")
+        # Display current entry
+        print("\nSelected item:")
+        sql_show_one(barcode)
 
-        # def update(quantity,expiry_date):
-        #     conn = sqlite3.connect('barcode.db')
-        #     c = conn.cursor()
-        #
-        #     c.execute('''
-        #     UPDATE...''')
-        #
-        #     c.execute('''
-        #     SELECT * FROM sample''')
-        # update(quantity,expiry_date)
-        pass
+        # Get quantity to be added
+        quantity_add = input("\nQuantity to be added: ")
+        sql_add_quantity(barcode, quantity_add)
+
+        # Check if expiry date needs to be updated - set the closest expiry date as value
+        expiry_date = input("Please input the closest expiry date for this item in YYYY-MM-DD format.\n"
+                            "If this does not need to be updated, press 'q' to exit.")
+        if not expiry_date == 'q' or expiry_date =='Q':
+            new_expiry_date(expiry_date,barcode)
+
 
 
 # UPDATE - Record usage of an item
@@ -234,7 +256,7 @@ def decrease_item():
     result = sql_entry_exists(barcode)
 
     if result is None:
-        print("No id match. Exit and select option 1 to add a new item.") # TODO: Update to return to main menu
+        print("No id match. Select option 1 to add a new item.")
 
     # Get quantity used
     else:
@@ -262,7 +284,7 @@ def edit_details():
     result = sql_entry_exists(barcode)
 
     if result is None:
-        print("No id match. Exit and select option 1 to add a new item.")
+        print("No id match. Select option 1 to add a new item.")
 
     # Select which variable to change
     else:

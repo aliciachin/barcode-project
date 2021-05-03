@@ -16,12 +16,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
+            <state relative-caret-position="156">
+              <caret line="130" column="18" lean-forward="true" selection-start-line="130" selection-start-column="4" selection-end-line="130" selection-end-column="18" />
               <folding>
-                <element signature="e#550#2072#0" />
-                <element signature="e#2075#2097#0" />
                 <element signature="e#2165#2288#0" />
+                <element signature="e#2354#2561#0" />
+                <element signature="e#2618#2824#0" />
+                <element signature="e#2886#3092#0" />
+                <element signature="e#3204#3487#0" />
+                <element signature="e#4000#4415#0" />
+                <element signature="e#4476#4637#0" />
               </folding>
             </state>
           </provider>
@@ -30,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="270">
+              <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -39,17 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sql.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scratch.py">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -80,6 +75,7 @@
         <option value="$PROJECT_DIR$/sql_add_new_item.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
         <option value="$PROJECT_DIR$/sql.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_2.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -99,6 +95,15 @@
             <path>
               <item name="barcode-project" type="b2602c69:ProjectViewProjectNode" />
               <item name="barcode-project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="barcode-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+            <path>
+              <item name="barcode-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Scratches" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
             </path>
           </expand>
           <select />
@@ -271,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619853377258</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Debugged sql_update_variable()&#10;&#10;sql_update_variable() is complete. All 5 options work now albeit on a very basic level">
+      <created>1619932731930</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1619932731930</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -287,12 +299,12 @@
     <frame x="0" y="0" width="2048" height="1152" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24074988" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3438579" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49710375" weight="0.3068392" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49710375" visible="true" weight="0.39926064" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39926064" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -381,7 +393,8 @@
     <MESSAGE value="Developed edit_details(); select variable to edit, to write sql function" />
     <MESSAGE value="Developed delete_item(), updated SQL-related functions&#10;&#10;Coded logic for delete_item. Have not defined sql_delete_one() to complete delete_item().&#10;Changed naming convention of SQL query functions to be prefixed with &quot;sql_&quot; &#10;Created sql_entry_exists()" />
     <MESSAGE value="Developed sql_update_variable(), completed sql_delete_one()&#10;&#10;Set up SQL query for sql_update_variable() - need to debug syntax error&#10;Completed sql_delete_one() - delete_item() works now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Developed sql_update_variable(), completed sql_delete_one()&#10;&#10;Set up SQL query for sql_update_variable() - need to debug syntax error&#10;Completed sql_delete_one() - delete_item() works now" />
+    <MESSAGE value="Debugged sql_update_variable()&#10;&#10;sql_update_variable() is complete. All 5 options work now albeit on a very basic level" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debugged sql_update_variable()&#10;&#10;sql_update_variable() is complete. All 5 options work now albeit on a very basic level" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/sql_create_table.py">
@@ -398,13 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -412,21 +418,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
+    <entry file="file://$PROJECT_DIR$/sql.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
+        <state relative-caret-position="156">
+          <caret line="130" column="18" lean-forward="true" selection-start-line="130" selection-start-column="4" selection-end-line="130" selection-end-column="18" />
           <folding>
-            <element signature="e#550#2072#0" />
-            <element signature="e#2075#2097#0" />
             <element signature="e#2165#2288#0" />
+            <element signature="e#2354#2561#0" />
+            <element signature="e#2618#2824#0" />
+            <element signature="e#2886#3092#0" />
+            <element signature="e#3204#3487#0" />
+            <element signature="e#4000#4415#0" />
+            <element signature="e#4476#4637#0" />
           </folding>
         </state>
       </provider>
