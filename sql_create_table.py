@@ -1,4 +1,4 @@
-# Check if barcode is
+# Create test database
 
 import sqlite3
 
